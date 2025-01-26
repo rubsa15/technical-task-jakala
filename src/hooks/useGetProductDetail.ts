@@ -6,7 +6,7 @@ export const useGetProductDetails = (productId: string | undefined) => {
   const [productDetail, setProductDetail] = useState<Product | undefined>(
     undefined
   );
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
     if (productId) {
