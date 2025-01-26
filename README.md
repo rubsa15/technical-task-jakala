@@ -24,7 +24,7 @@ A React application built with TypeScript, Vite, and TailwindCSS.
 1. Clone the repository:
 
 ```bash
-git clone [repository-url]
+git clone git@github.com:rubsa15/technical-task-jakala.git
 cd technical-task-jakala
 ```
 
