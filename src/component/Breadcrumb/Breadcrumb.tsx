@@ -21,9 +21,10 @@ const Breadcrumb: React.FC = () => {
   return (
     <div className='ml-4 flex'>
       {paths.map((_, index) => (
-        <p className='mr-2 capitalize'>{`${showArrow(index)} ${showName(
-          index
-        )}`}</p>
+        <p
+          className='mr-2 capitalize'
+          data-test-id={`breadcrumb-${index}`}
+        >{`${showArrow(index)} ${showName(index)}`}</p>
       ))}
     </div>
   );
