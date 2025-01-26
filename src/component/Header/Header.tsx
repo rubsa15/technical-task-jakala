@@ -8,7 +8,7 @@ const Header: React.FC = () => {
     <header className='sticky top-0 z-50 bg-white shadow-md p-4'>
       <div className='flex items-end'>
         <Link to='/'>
-          <img src={logo} className='h-[36px]' alt='Logo' />
+          <img src={logo} className='h-[28px] sm:h-[36px]' alt='Logo' />
         </Link>
         <Breadcrumb />
       </div>

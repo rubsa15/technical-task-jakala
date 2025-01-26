@@ -27,7 +27,10 @@ const Home: React.FC = () => {
 
   return (
     <>
-      <div className='flex justify-end'>
+      <div
+        className='flex justify-start sm:justify-end'
+        data-testid='home-page'
+      >
         <Input placeholder='Search plant' onChange={onChangeFilter} />
       </div>
       {filteredProducts && filteredProducts.length > 0 ? (

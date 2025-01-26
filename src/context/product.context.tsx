@@ -3,12 +3,12 @@ import { useGetProductDetails } from '../hooks/useGetProductDetail';
 import { useParams } from 'react-router';
 import { Product } from '../domain/Product';
 
-interface FloorsContextType {
+interface ProductContextType {
   isLoading: boolean;
   productSelected: Product | undefined;
 }
 
-const ProductContext = createContext<FloorsContextType | undefined>(undefined);
+const ProductContext = createContext<ProductContextType | undefined>(undefined);
 
 const ProductProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const { productId } = useParams();

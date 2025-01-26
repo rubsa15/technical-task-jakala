@@ -9,7 +9,7 @@ const ProductDetails: React.FC = () => {
     return <p>Cargando</p>;
   }
   return (
-    <>
+    <div data-testid='product-details'>
       <div className='flex justify-end'>
         <Link to={'/'} className='underline'>
           {'< Back'}
@@ -31,7 +31,7 @@ const ProductDetails: React.FC = () => {
       ) : (
         <p>No hay detalles del producto</p>
       )}
-    </>
+    </div>
   );
 };
 

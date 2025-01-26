@@ -1,50 +1,91 @@
-# React + TypeScript + Vite
+# Technical Task Jakala
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React application built with TypeScript, Vite, and TailwindCSS.
 
-Currently, two official plugins are available:
+## Prerequisites
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Node.js (LTS version recommended)
+- npm or yarn
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- React 18
+- TypeScript
+- Vite
+- TailwindCSS
+- React Router
+- Testing Libraries:
+  - Vitest
+  - React Testing Library
+  - Jest DOM
 
-- Configure the top-level `parserOptions` property like this:
+## Getting Started
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+1. Clone the repository:
+
+```bash
+git clone [repository-url]
+cd technical-task-jakala
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+2. Install dependencies:
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+```bash
+npm install
+# or
+yarn
 ```
+
+3. Start the development server:
+
+```bash
+npm run dev
+# or
+yarn dev
+```
+
+## Available Scripts
+
+- `npm run dev` - Starts the development server
+- `npm run build` - Builds the project for production (runs TypeScript compilation first)
+- `npm run preview` - Previews the production build locally
+- `npm run lint` - Runs ESLint to check code quality
+- `npm run test` - Runs tests using Vitest
+
+## Project Structure
+
+```
+technical-task-jakala/
+├── src/
+├── public/
+├── package.json
+├── tsconfig.json
+├── vite.config.ts
+└── README.md
+```
+
+## Testing
+
+This project uses Vitest as the test runner along with React Testing Library for component testing. Run tests using:
+
+```bash
+npm run test
+```
+
+## Linting
+
+ESLint is configured for code quality. Run the linter using:
+
+```bash
+npm run lint
+```
+
+## Build
+
+To create a production build:
+
+```bash
+npm run build
+```
+
+The built files will be in the `dist` directory.

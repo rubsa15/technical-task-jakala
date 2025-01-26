@@ -8,7 +8,7 @@ interface Props {
 
 const ProductCard: React.FC<Props> = ({ product }) => {
   return (
-    <div className='flex flex-col'>
+    <article className='flex flex-col'>
       <Link to={`/product/${product.id}`}>
         <div className='w-full h-[350px]'>
           <img
@@ -21,7 +21,7 @@ const ProductCard: React.FC<Props> = ({ product }) => {
         <p className='text-base text-gray-700'>{product.binomialName}</p>
         <p className='text-lg font-bold'>{product.price}€</p>
       </Link>
-    </div>
+    </article>
   );
 };
 
