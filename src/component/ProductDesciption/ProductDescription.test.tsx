@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
 import ProductDescription from './ProductDescription';
-import { Product } from '../../domain/Product';
+import { Product } from '../../domain/Plant';
 import '@testing-library/jest-dom';
 
 describe('ProductDescription component', () => {

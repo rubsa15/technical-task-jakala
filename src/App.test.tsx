@@ -7,10 +7,11 @@ import {
 import App from './App';
 import { describe, it, expect, vi } from 'vitest';
 import '@testing-library/jest-dom';
-import * as getProductsListHook from './hooks/useGetProductsList';
-import * as ProductHook from './hooks/useProduct';
+import * as getPlantsListHook from './hooks/useGetPlantsList';
+import * as PlantHook from './hooks/usePlant';
+import { Plant } from './domain/Plant';
 
-const mockProductList = [
+const mockPlantsList: Plant[] = [
   {
     id: '1',
     name: 'Test Plant1',
@@ -20,6 +21,7 @@ const mockProductList = [
     wateringsPerWeek: 3,
     fertilizerType: 'organic',
     heightInCm: 150,
+    status: 'default',
   },
   {
     id: '2',
@@ -30,10 +32,11 @@ const mockProductList = [
     wateringsPerWeek: 3,
     fertilizerType: 'organic',
     heightInCm: 150,
+    status: 'default',
   },
 ];
 
-const mockProduct = {
+const mockPlant: Plant = {
   id: '1',
   name: 'Test Plant',
   binomialName: 'Plantae testus',
@@ -42,16 +45,17 @@ const mockProduct = {
   wateringsPerWeek: 3,
   fertilizerType: 'organic',
   heightInCm: 150,
+  status: 'default',
 };
 
 describe('App Router', () => {
   it('renders home page by default', () => {
-    vi.spyOn(getProductsListHook, 'useGetProductsList').mockReturnValueOnce({
-      productsList: mockProductList,
+    vi.spyOn(getPlantsListHook, 'useGetPlantsList').mockReturnValueOnce({
+      plantsList: mockPlantsList,
       isLoading: false,
     });
-    vi.spyOn(ProductHook, 'useProduct').mockReturnValue({
-      productSelected: mockProduct,
+    vi.spyOn(PlantHook, 'usePlant').mockReturnValue({
+      plantSelected: mockPlant,
       isLoading: false,
     });
     render(
@@ -62,7 +66,7 @@ describe('App Router', () => {
     expect(screen.getByTestId('home-page')).toBeInTheDocument();
   });
 
-  it('renders product details page with valid product ID', () => {
+  it('renders plant details page with valid product ID', () => {
     const router = createMemoryRouter([{ path: '*', element: <App /> }], {
       initialEntries: ['/product/123'],
     });

@@ -2,10 +2,10 @@ import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router';
 import { describe, it, expect } from 'vitest';
 import ProductCard from './ProductCard';
-import { Product } from '../../domain/Product';
+import { Plant } from '../../domain/Plant';
 import '@testing-library/jest-dom';
 
-const mockProduct: Product = {
+const mockProduct: Plant = {
   id: '1',
   name: 'Test Plant',
   binomialName: 'Plantae testus',
@@ -14,6 +14,7 @@ const mockProduct: Product = {
   wateringsPerWeek: 3,
   fertilizerType: 'organic',
   heightInCm: 150,
+  status: 'default',
 };
 
 describe('ProductCard component', () => {

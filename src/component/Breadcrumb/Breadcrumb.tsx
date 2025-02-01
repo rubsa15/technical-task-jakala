@@ -1,10 +1,10 @@
 import React from 'react';
-import { useProduct } from '../../hooks/useProduct';
+import { usePlant } from '../../hooks/usePlant';
 import { useLocation } from 'react-router';
 
 const Breadcrumb: React.FC = () => {
   const { pathname } = useLocation();
-  const { productSelected } = useProduct();
+  const { plantSelected } = usePlant();
 
   const paths = pathname.split('/').filter((item) => item);
 
@@ -12,7 +12,7 @@ const Breadcrumb: React.FC = () => {
 
   const showName = (index: number) => {
     if (paths[index - 1] === 'product') {
-      return productSelected?.name;
+      return plantSelected?.name;
     }
 
     return paths[index];
@@ -24,6 +24,7 @@ const Breadcrumb: React.FC = () => {
         <p
           className='mr-2 capitalize'
           data-test-id={`breadcrumb-${index}`}
+          key={`breadcrumb-${index}`}
         >{`${showArrow(index)} ${showName(index)}`}</p>
       ))}
     </div>

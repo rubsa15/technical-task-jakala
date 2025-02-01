@@ -4,7 +4,7 @@ import AppLayout from './AppLayout';
 import { BrowserRouter } from 'react-router';
 import '@testing-library/jest-dom';
 
-vi.mock('../component/Header/Header', () => ({
+vi.mock('../Header/Header', () => ({
   default: () => <div>Mocked Header</div>,
 }));
 

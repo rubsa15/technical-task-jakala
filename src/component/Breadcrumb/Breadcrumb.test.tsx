@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import Breadcrumb from './Breadcrumb';
-import * as ProductHook from '../../hooks/useProduct';
+import * as PlantHook from '../../hooks/usePlant';
 import { useLocation } from 'react-router';
 import '@testing-library/jest-dom';
 
@@ -13,8 +13,8 @@ describe('Breadcrumb component', () => {
   it('renders breadcrumb paths based on the current URL', () => {
     const useLocationMock = vi.fn().mockReturnValue({ pathname: '/home/shop' });
     vi.mocked(useLocation).mockImplementation(useLocationMock);
-    vi.spyOn(ProductHook, 'useProduct').mockReturnValue({
-      productSelected: undefined,
+    vi.spyOn(PlantHook, 'usePlant').mockReturnValue({
+      plantSelected: undefined,
       isLoading: false,
     });
 
@@ -27,13 +27,13 @@ describe('Breadcrumb component', () => {
     expect(breadcrumbs[1]).toHaveTextContent('> shop');
   });
 
-  it('displays the product name when the path contains "product"', () => {
+  it('displays the plant name when the path contains "product"', () => {
     const useLocationMock = vi
       .fn()
       .mockReturnValue({ pathname: '/product/123' });
     vi.mocked(useLocation).mockImplementation(useLocationMock);
-    vi.spyOn(ProductHook, 'useProduct').mockReturnValue({
-      productSelected: { name: 'Test Product' },
+    vi.spyOn(PlantHook, 'usePlant').mockReturnValue({
+      plantSelected: { name: 'Test Product' },
       isLoading: false,
     });
 
@@ -46,8 +46,8 @@ describe('Breadcrumb component', () => {
   it('does not display anything if the path is empty', () => {
     const useLocationMock = vi.fn().mockReturnValue({ pathname: '/' });
     vi.mocked(useLocation).mockImplementation(useLocationMock);
-    vi.spyOn(ProductHook, 'useProduct').mockReturnValue({
-      productSelected: undefined,
+    vi.spyOn(PlantHook, 'usePlant').mockReturnValue({
+      plantSelected: undefined,
       isLoading: false,
     });
 

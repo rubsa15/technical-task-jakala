@@ -1,11 +1,12 @@
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import ProductDetails from './ProductDetails';
-import * as ProductHook from '../hooks/useProduct';
+import * as PlantHook from '../hooks/usePlant';
 import { BrowserRouter } from 'react-router';
 import '@testing-library/jest-dom';
+import { Plant } from '../domain/Plant';
 
-const mockProduct = {
+const mockPlant: Plant = {
   id: '1',
   name: 'Test Plant',
   binomialName: 'Plantae testus',
@@ -14,12 +15,13 @@ const mockProduct = {
   wateringsPerWeek: 3,
   fertilizerType: 'organic',
   heightInCm: 150,
+  status: 'default',
 };
 
 describe('ProductDetails component', () => {
   it('renders loading state', () => {
-    vi.spyOn(ProductHook, 'useProduct').mockReturnValue({
-      productSelected: undefined,
+    vi.spyOn(PlantHook, 'usePlant').mockReturnValue({
+      plantSelected: undefined,
       isLoading: true,
     });
 
@@ -33,8 +35,8 @@ describe('ProductDetails component', () => {
   });
 
   it('renders product details when product is selected', async () => {
-    vi.spyOn(ProductHook, 'useProduct').mockReturnValue({
-      productSelected: mockProduct,
+    vi.spyOn(PlantHook, 'usePlant').mockReturnValue({
+      plantSelected: mockPlant,
       isLoading: false,
     });
 
@@ -49,8 +51,8 @@ describe('ProductDetails component', () => {
   });
 
   it('renders no product details when no product is selected', () => {
-    vi.spyOn(ProductHook, 'useProduct').mockReturnValue({
-      productSelected: undefined,
+    vi.spyOn(PlantHook, 'usePlant').mockReturnValue({
+      plantSelected: undefined,
       isLoading: false,
     });
 
@@ -66,8 +68,8 @@ describe('ProductDetails component', () => {
   });
 
   it('renders the back link', () => {
-    vi.spyOn(ProductHook, 'useProduct').mockReturnValue({
-      productSelected: mockProduct,
+    vi.spyOn(PlantHook, 'usePlant').mockReturnValue({
+      plantSelected: mockPlant,
       isLoading: false,
     });
 

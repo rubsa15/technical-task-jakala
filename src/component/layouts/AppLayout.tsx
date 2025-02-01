@@ -1,16 +1,16 @@
 import React from 'react';
-import Header from '../component/Header/Header';
+import Header from '../Header/Header';
 import { Outlet } from 'react-router';
-import { ProductProvider } from '../context/product.context';
+import { PlantProvider } from '../../context/plant.context';
 
 const AppLayout: React.FC = () => {
   return (
-    <ProductProvider>
+    <PlantProvider>
       <Header />
       <div className='container mx-auto p-4 mt-4'>
         <Outlet />
       </div>
-    </ProductProvider>
+    </PlantProvider>
   );
 };
 

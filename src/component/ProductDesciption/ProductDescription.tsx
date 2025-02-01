@@ -1,13 +1,15 @@
 import React from 'react';
-import { Product } from '../../domain/Product';
+import { Plant } from '../../domain/Plant';
+import Badge from '../Badge/Badge';
 
 interface Props {
-  product: Product;
+  product: Plant;
 }
 
 const ProductDescription: React.FC<Props> = ({ product }) => {
   return (
-    <div className='flex flex-col'>
+    <div>
+      <Badge state={product.status} />
       <div className='flex justify-between'>
         <p className='text-2xl font-bold mt-2'>{product.name}</p>
         <p className='text-2xl font-bold'>{product.price}€</p>

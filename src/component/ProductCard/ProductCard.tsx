@@ -1,16 +1,20 @@
 import React from 'react';
-import { Product } from '../../domain/Product';
+import { Plant } from '../../domain/Plant';
 import { Link } from 'react-router';
+import Badge from '../Badge/Badge';
 
 interface Props {
-  product: Product;
+  product: Plant;
 }
 
 const ProductCard: React.FC<Props> = ({ product }) => {
   return (
     <article className='flex flex-col'>
       <Link to={`/product/${product.id}`}>
-        <div className='w-full h-[350px]'>
+        <div className='w-full h-[350px] relative'>
+          <div className='absolute top-2 right-2'>
+            <Badge state={product.status} />
+          </div>
           <img
             src={product.imgUrl}
             className='w-full h-full object-cover rounded-2xl'

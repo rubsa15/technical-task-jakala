@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router';
 import ProductDescription from '../component/ProductDesciption/ProductDescription';
-import { useProduct } from '../hooks/useProduct';
+import { usePlant } from '../hooks/usePlant';
 
 const ProductDetails: React.FC = () => {
-  const { productSelected, isLoading } = useProduct();
+  const { plantSelected, isLoading } = usePlant();
   if (isLoading) {
     return <p>Cargando</p>;
   }
@@ -16,16 +16,16 @@ const ProductDetails: React.FC = () => {
         </Link>
       </div>
 
-      {productSelected ? (
+      {plantSelected ? (
         <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-6 mt-8'>
           <div className='w-full h-[350px]'>
             <img
-              src={productSelected.imgUrl}
+              src={plantSelected.imgUrl}
               className='w-full h-full object-cover rounded-2xl'
             />
           </div>
           <div>
-            <ProductDescription product={productSelected} />
+            <ProductDescription product={plantSelected} />
           </div>
         </div>
       ) : (

@@ -2,12 +2,13 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import { BrowserRouter } from 'react-router';
 import Home from './Home';
-import { useGetProductsList } from '../hooks/useGetProductsList';
+import { useGetPlantsList } from '../hooks/useGetPlantsList';
 import '@testing-library/jest-dom';
+import { Plant } from '../domain/Plant';
 
-vi.mock('../hooks/useGetProductsList');
+vi.mock('../hooks/useGetPlantsList');
 
-const mockProducts = [
+const mockPlants: Plant[] = [
   {
     id: '1',
     name: 'Snake Plant',
@@ -17,6 +18,7 @@ const mockProducts = [
     wateringsPerWeek: 3,
     fertilizerType: 'organic',
     heightInCm: 150,
+    status: 'default',
   },
   {
     id: '2',
@@ -27,18 +29,18 @@ const mockProducts = [
     wateringsPerWeek: 3,
     fertilizerType: 'organic',
     heightInCm: 150,
+    status: 'default',
   },
 ];
 
-// Wrapper component to provide router context
 const renderWithRouter = (component: React.ReactNode) => {
   return render(<BrowserRouter>{component}</BrowserRouter>);
 };
 
 describe('Home', () => {
   it('should show loading state', () => {
-    vi.mocked(useGetProductsList).mockReturnValue({
-      productsList: [],
+    vi.mocked(useGetPlantsList).mockReturnValue({
+      plantsList: [],
       isLoading: true,
     });
 
@@ -46,9 +48,9 @@ describe('Home', () => {
     expect(screen.getByText('Cargando')).toBeInTheDocument();
   });
 
-  it('should render products list', () => {
-    vi.mocked(useGetProductsList).mockReturnValue({
-      productsList: mockProducts,
+  it('should render plants list', () => {
+    vi.mocked(useGetPlantsList).mockReturnValue({
+      plantsList: mockPlants,
       isLoading: false,
     });
 
@@ -60,9 +62,9 @@ describe('Home', () => {
     expect(screen.getByText('Monstera')).toBeInTheDocument();
   });
 
-  it('should filter products by name', () => {
-    vi.mocked(useGetProductsList).mockReturnValue({
-      productsList: mockProducts,
+  it('should filter plants by name', () => {
+    vi.mocked(useGetPlantsList).mockReturnValue({
+      plantsList: mockPlants,
       isLoading: false,
     });
 
@@ -75,9 +77,9 @@ describe('Home', () => {
     expect(screen.queryByText('Monstera')).not.toBeInTheDocument();
   });
 
-  it('should filter products by binomial name', () => {
-    vi.mocked(useGetProductsList).mockReturnValue({
-      productsList: mockProducts,
+  it('should filter plants by binomial name', () => {
+    vi.mocked(useGetPlantsList).mockReturnValue({
+      plantsList: mockPlants,
       isLoading: false,
     });
 
@@ -90,9 +92,9 @@ describe('Home', () => {
     expect(screen.getByText('Monstera')).toBeInTheDocument();
   });
 
-  it('should show no products message when no results found', () => {
-    vi.mocked(useGetProductsList).mockReturnValue({
-      productsList: mockProducts,
+  it('should show no plants message when no results found', () => {
+    vi.mocked(useGetPlantsList).mockReturnValue({
+      plantsList: mockPlants,
       isLoading: false,
     });
 
@@ -101,6 +103,6 @@ describe('Home', () => {
     const searchInput = screen.getByPlaceholderText('Search plant');
     fireEvent.change(searchInput, { target: { value: 'nonexistent' } });
 
-    expect(screen.getByText('No hay productos')).toBeInTheDocument();
+    expect(screen.getByText('No hay plantas')).toBeInTheDocument();
   });
 });

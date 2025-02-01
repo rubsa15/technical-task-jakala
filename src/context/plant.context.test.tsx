@@ -1,10 +1,11 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
-import { ProductContext, ProductProvider } from '../context/product.context';
-import * as getProductDetailsHook from '../hooks/useGetProductDetail';
+import { PlantContext, PlantProvider } from './plant.context';
+import * as getPlantDetailsHook from '../hooks/useGetPlantDetail';
 import { useContext } from 'react';
 import { useParams } from 'react-router';
 import '@testing-library/jest-dom';
+import { Plant } from '../domain/Plant';
 
 vi.mock('react-router', () => ({
   ...vi.importActual('react-router'),
@@ -12,7 +13,7 @@ vi.mock('react-router', () => ({
 }));
 
 const TestComponent: React.FC = () => {
-  const context = useContext(ProductContext);
+  const context = useContext(PlantContext);
 
   if (context?.isLoading) {
     return <div>Loading...</div>;
@@ -20,15 +21,15 @@ const TestComponent: React.FC = () => {
 
   return (
     <div>
-      <p>{context?.productSelected?.name}</p>
-      <p>{context?.productSelected ? 'Loaded' : 'No product'}</p>
+      <p>{context?.plantSelected?.name}</p>
+      <p>{context?.plantSelected ? 'Loaded' : 'No product'}</p>
     </div>
   );
 };
 
 describe('ProductProvider Context', () => {
   it('should provide product data after loading', async () => {
-    const mockProduct = {
+    const mockPlant: Plant = {
       id: '1',
       name: 'Test Product',
       price: 100,
@@ -37,17 +38,18 @@ describe('ProductProvider Context', () => {
       heightInCm: 50,
       wateringsPerWeek: 2,
       fertilizerType: 'Organic',
+      status: 'default',
     };
-    vi.spyOn(getProductDetailsHook, 'useGetProductDetails').mockReturnValue({
+    vi.spyOn(getPlantDetailsHook, 'useGetPlantDetails').mockReturnValue({
       isLoading: false,
-      productDetail: mockProduct,
+      plantDetail: mockPlant,
     });
     (useParams as vi.Mock).mockReturnValue({ id: '123' });
 
     render(
-      <ProductProvider>
+      <PlantProvider>
         <TestComponent />
-      </ProductProvider>
+      </PlantProvider>
     );
 
     await waitFor(() => screen.getByText('Test Product'));
@@ -57,18 +59,17 @@ describe('ProductProvider Context', () => {
   });
 
   it('should show loading state initially', async () => {
-    vi.spyOn(getProductDetailsHook, 'useGetProductDetails').mockReturnValue({
+    vi.spyOn(getPlantDetailsHook, 'useGetPlantDetails').mockReturnValue({
       isLoading: true,
-      productDetail: undefined,
+      plantDetail: undefined,
     });
 
     render(
-      <ProductProvider>
+      <PlantProvider>
         <TestComponent />
-      </ProductProvider>
+      </PlantProvider>
     );
 
-    // Verificamos que el estado de carga se muestra
     expect(screen.getByText('Loading...')).toBeInTheDocument();
   });
 });
